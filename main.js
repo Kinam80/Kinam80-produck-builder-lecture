@@ -73,10 +73,10 @@ function getCurrentUser() {
 document.addEventListener('DOMContentLoaded', () => {
     initializeAuth(); // 인증 시스템 초기화 (기본 관리자 계정 생성 등)
 
-    const path = window.location.pathname;
+    const pageName = path.split('/').pop().split('.')[0]; // 'login.html' -> 'login', '/login' -> 'login'
 
     // 로그인 페이지 로직
-    if (path.includes('login.html')) {
+    if (pageName === 'login') {
         const usernameInput = document.getElementById('username');
         const passwordInput = document.getElementById('password');
         const loginButton = document.getElementById('login-button');
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 회원가입 페이지 로직
-    else if (path.includes('register.html')) {
+    else if (pageName === 'register') {
         const regUsernameInput = document.getElementById('reg-username');
         const regPasswordInput = document.getElementById('reg-password');
         const regPasswordConfirmInput = document.getElementById('reg-password-confirm');
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 메인 페이지 (index.html) 로직
-    else if (path.includes('index.html')) {
+    else if (pageName === 'index') {
         const loggedInUser = getCurrentUser();
         if (!loggedInUser) { // 로그인 안되어있으면 로그인 페이지로
             window.location.href = 'login.html';
@@ -390,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
         displayGuestbookEntries(); // 페이지 로드 시 방명록 표시
     }
     // 관리자 페이지 로직
-    else if (path.includes('admin.html')) {
+    else if (pageName === 'admin') {
         const userTableBody = document.querySelector('#user-table tbody');
         const adminLogoutButton = document.getElementById('admin-logout-button');
         const userStatusFilter = document.getElementById('user-status-filter');
