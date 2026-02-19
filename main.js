@@ -1,1 +1,19 @@
-alert("미니홈피에 오신 것을 환영합니다!");
+document.addEventListener('DOMContentLoaded', () => {
+    const profilePicture = document.getElementById('profile-picture');
+    const profilePictureInput = document.getElementById('profile-picture-input');
+
+    profilePicture.addEventListener('click', () => {
+        profilePictureInput.click();
+    });
+
+    profilePictureInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                profilePicture.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+});
