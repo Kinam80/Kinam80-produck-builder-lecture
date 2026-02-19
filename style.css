@@ -1,1 +1,69 @@
-/* Add styles here */
+body {
+    font-family: 'Dotum', '돋움', sans-serif;
+    background-color: #f0f8ff;
+    margin: 0;
+    padding: 20px;
+}
+
+.cyworld-container {
+    width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.header h1 {
+    text-align: center;
+    color: #333;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.main-content {
+    display: flex;
+    margin-top: 20px;
+}
+
+.profile {
+    width: 200px;
+    text-align: center;
+    margin-right: 20px;
+}
+
+.profile img {
+    border-radius: 50%;
+    border: 3px solid #ccc;
+}
+
+.profile p {
+    margin: 10px 0;
+}
+
+.content {
+    width: 100%;
+}
+
+.diary-entry {
+    border: 1px solid #eee;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.sidebar {
+    margin-top: 20px;
+}
+
+.mini-room {
+    height: 200px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #888;
+}

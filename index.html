@@ -1,14 +1,40 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>싸이월드</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+    <div class="cyworld-container">
+        <div class="header">
+            <h1>미니홈피</h1>
+        </div>
+        <div class="main-content">
+            <div class="profile">
+                <img src="https://via.placeholder.com/150" alt="프로필 사진">
+                <p>이름: 김미니</p>
+                <p>상태: 오늘도 좋은 하루!</p>
+            </div>
+            <div class="content">
+                <h2>다이어리</h2>
+                <div class="diary-entry">
+                    <h3>2026-02-19</h3>
+                    <p>오늘은 싸이월드 클론 코딩을 시작했다. 재미있다!</p>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar">
+            <h2>미니룸</h2>
+            <div class="mini-room">
+                <!-- 미니룸 아이템들이 여기에 들어갑니다. -->
+            </div>
+        </div>
+        <div class="footer">
+            <p>&copy; 2026 Cyworld Clone</p>
+        </div>
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>
