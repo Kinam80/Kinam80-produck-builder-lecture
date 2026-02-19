@@ -73,6 +73,7 @@ function getCurrentUser() {
 document.addEventListener('DOMContentLoaded', () => {
     initializeAuth(); // 인증 시스템 초기화 (기본 관리자 계정 생성 등)
 
+    const path = window.location.pathname; // path 변수 선언 추가
     const pageName = path.split('/').pop().split('.')[0]; // 'login.html' -> 'login', '/login' -> 'login'
 
     // 로그인 페이지 로직
