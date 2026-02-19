@@ -158,5 +158,55 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     displayMemoryPhotos(); // 페이지 로드 시 추억 사진 표시
+
+    // 방명록 관리
+    const guestbookMessageInput = document.getElementById('guestbook-message');
+    const submitGuestbookBtn = document.getElementById('submit-guestbook-entry');
+    const guestbookEntriesContainer = document.querySelector('.guestbook-entries');
+
+    let guestbookEntries = JSON.parse(localStorage.getItem('cyworldGuestbookEntries')) || [];
+
+    function saveGuestbookEntries() {
+        localStorage.setItem('cyworldGuestbookEntries', JSON.stringify(guestbookEntries));
+    }
+
+    function displayGuestbookEntries() {
+        guestbookEntriesContainer.innerHTML = ''; // 기존 방명록 지우기
+        guestbookEntries.forEach((entry, index) => {
+            const entryDiv = document.createElement('div');
+            entryDiv.className = 'guestbook-entry-item';
+            entryDiv.innerHTML = `
+                <p><strong>익명</strong> (${entry.timestamp})</p>
+                <p>${entry.message}</p>
+                <button class="delete-guestbook-entry" data-index="${index}">삭제</button>
+            `;
+            guestbookEntriesContainer.appendChild(entryDiv);
+        });
+
+        // 삭제 버튼 이벤트 리스너 재등록
+        document.querySelectorAll('.delete-guestbook-entry').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const indexToDelete = event.target.dataset.index;
+                guestbookEntries.splice(indexToDelete, 1);
+                saveGuestbookEntries();
+                displayGuestbookEntries();
+            });
+        });
+    }
+
+    submitGuestbookBtn.addEventListener('click', () => {
+        const message = guestbookMessageInput.value.trim();
+        if (message) {
+            const now = new Date();
+            const timestamp = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+            guestbookEntries.push({ message, timestamp });
+            saveGuestbookEntries();
+            guestbookMessageInput.value = ''; // 입력 필드 초기화
+            displayGuestbookEntries();
+        }
+    });
+
+    displayGuestbookEntries(); // 페이지 로드 시 방명록 표시
 });
+
 

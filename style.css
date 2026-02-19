@@ -113,6 +113,7 @@ body {
     margin-top: 20px;
     border-top: 1px solid #eee;
     padding-top: 20px;
+    margin-bottom: 20px; /* 방명록과의 간격 */
 }
 
 .memory-photos button {
@@ -137,6 +138,9 @@ body {
     max-height: 300px; /* 스크롤바를 위한 최대 높이 */
     overflow-y: auto; /* 내용이 넘칠 경우 스크롤 */
     padding-right: 5px; /* 스크롤바 공간 확보 */
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .memory-photo-item {
@@ -173,4 +177,80 @@ body {
 
 .memory-photo-item button:hover {
     background-color: rgba(255, 0, 0, 0.9);
+}
+
+.guestbook {
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.guestbook textarea {
+    width: calc(100% - 22px); /* padding 고려 */
+    min-height: 80px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Dotum', '돋움', sans-serif;
+    resize: vertical;
+}
+
+.guestbook button {
+    background-color: #5a5ad2;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    float: right; /* 버튼을 오른쪽으로 정렬 */
+    margin-bottom: 15px;
+}
+
+.guestbook button:hover {
+    background-color: #4a4aae;
+}
+
+.guestbook-entries {
+    clear: both; /* float 해제 */
+    margin-top: 20px;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 5px;
+    max-height: 400px; /* 스크롤바를 위한 최대 높이 */
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤 */
+    padding-right: 5px;
+}
+
+.guestbook-entry-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.guestbook-entry-item p {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.guestbook-entry-item p strong {
+    color: #000;
+}
+
+.guestbook-entry-item .delete-guestbook-entry {
+    background-color: rgba(255, 0, 0, 0.6);
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 3px 8px;
+    font-size: 12px;
+}
+
+.guestbook-entry-item .delete-guestbook-entry:hover {
+    background-color: rgba(255, 0, 0, 0.8);
 }
