@@ -9,6 +9,10 @@
 <body>
     <canvas id="flower-canvas"></canvas>
     <div class="cyworld-container">
+        <div class="settings">
+            <label for="bg-color-picker">배경 색상:</label>
+            <input type="color" id="bg-color-picker">
+        </div>
         <div class="header">
             <h1>미니홈피</h1>
         </div>
@@ -26,6 +30,15 @@
                 <div class="diary-entry">
                     <h3>2026-02-19</h3>
                     <p>오늘은 싸이월드 클론 코딩을 시작했다. 재미있다!</p>
+                </div>
+
+                <h2>추억 사진</h2>
+                <div class="memory-photos">
+                    <input type="file" id="memory-photo-input" accept="image/*" multiple style="display: none;">
+                    <button id="add-memory-photo">사진 추가</button>
+                    <div class="memory-photos-grid">
+                        <!-- 추억 사진들이 여기에 표시됩니다 -->
+                    </div>
                 </div>
             </div>
         </div>

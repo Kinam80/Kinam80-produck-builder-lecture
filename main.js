@@ -1,8 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
     const profilePicture = document.getElementById('profile-picture');
     const profilePictureInput = document.getElementById('profile-picture-input');
+    const bgColorPicker = document.getElementById('bg-color-picker');
+
+    // 배경 색상 관리
+    const savedBgColor = localStorage.getItem('cyworldBgColor');
+    if (savedBgColor) {
+        document.body.style.backgroundColor = savedBgColor;
+        bgColorPicker.value = savedBgColor;
+    }
+
+    bgColorPicker.addEventListener('change', (event) => {
+        const newColor = event.target.value;
+        document.body.style.backgroundColor = newColor;
+        localStorage.setItem('cyworldBgColor', newColor);
+    });
 
     if (profilePicture && profilePictureInput) {
+        // 프로필 사진 로드
+        const savedProfilePicture = localStorage.getItem('cyworldProfilePicture');
+        if (savedProfilePicture) {
+            profilePicture.src = savedProfilePicture;
+        } else {
+            profilePicture.src = "https://via.placeholder.com/200"; // 기본 이미지
+        }
+
         profilePicture.addEventListener('click', () => {
             profilePictureInput.click();
         });
@@ -13,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     profilePicture.src = e.target.result;
+                    localStorage.setItem('cyworldProfilePicture', e.target.result); // 로컬 스토리지에 저장
                 };
                 reader.readAsDataURL(file);
             }
@@ -79,4 +102,61 @@ document.addEventListener('DOMContentLoaded', () => {
             init();
         });
     }
+
+    // 추억 사진 관리
+    const memoryPhotoInput = document.getElementById('memory-photo-input');
+    const addMemoryPhotoBtn = document.getElementById('add-memory-photo');
+    const memoryPhotosGrid = document.querySelector('.memory-photos-grid');
+
+    let memoryPhotos = JSON.parse(localStorage.getItem('cyworldMemoryPhotos')) || [];
+
+    function saveMemoryPhotos() {
+        localStorage.setItem('cyworldMemoryPhotos', JSON.stringify(memoryPhotos));
+    }
+
+    function displayMemoryPhotos() {
+        memoryPhotosGrid.innerHTML = ''; // 기존 사진 지우기
+        memoryPhotos.forEach((photoSrc, index) => {
+            const imgContainer = document.createElement('div');
+            imgContainer.className = 'memory-photo-item';
+
+            const img = document.createElement('img');
+            img.src = photoSrc;
+            img.alt = `추억 사진 ${index + 1}`;
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = '삭제';
+            deleteBtn.addEventListener('click', () => {
+                memoryPhotos.splice(index, 1); // 배열에서 삭제
+                saveMemoryPhotos(); // 로컬 스토리지 업데이트
+                displayMemoryPhotos(); // 화면 다시 그리기
+            });
+
+            imgContainer.appendChild(img);
+            imgContainer.appendChild(deleteBtn);
+            memoryPhotosGrid.appendChild(imgContainer);
+        });
+    }
+
+    addMemoryPhotoBtn.addEventListener('click', () => {
+        memoryPhotoInput.click();
+    });
+
+    memoryPhotoInput.addEventListener('change', (event) => {
+        const files = event.target.files;
+        if (files.length > 0) {
+            Array.from(files).forEach(file => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    memoryPhotos.push(e.target.result);
+                    saveMemoryPhotos();
+                    displayMemoryPhotos();
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+    });
+
+    displayMemoryPhotos(); // 페이지 로드 시 추억 사진 표시
 });
+
